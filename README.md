@@ -25,9 +25,9 @@ flowchart LR
     voc -->|to_keyterms| stt["STT keyterm list, fixes mishears"]
     pron -->|to_pronunciation_entries| tts["TTS respelling, fixes mispronunciation"]
     fill -->|to_filler_pool| lat["filler phrase pool, fills the dead air"]
-    stt --> call(["live call"])
-    tts --> call
-    lat --> call
+    stt --> live(["live call"])
+    tts --> live
+    lat --> live
 ```
 
 ## The problem it solves
