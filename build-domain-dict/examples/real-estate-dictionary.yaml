@@ -1,0 +1,58 @@
+# Domain dictionary: real_estate, built by reading sample-real-estate-playbook.yaml
+# (persona + two journey prompts). Every row below traces to text that literally
+# appears in that file; nothing outside it was added, even though real estate
+# generally has other well-known terms (see the domain-name-only run for those).
+#
+# Deliberately excluded, present in the file but failing the admission test:
+#   ready-to-move, under-construction, possession date, site visit  -> ordinary
+#     word compounds, STT already transcribes these correctly.
+#   "registration" / "registered" (standalone) -> common word, only RERA itself
+#     (the acronym it is paired with) earns a row.
+#
+# Keyterm cost: 5 rows, 1 of them with a value -> 6 tokens of the 40-token target.
+
+domain: real_estate
+
+vocabulary:
+  - key: RERA                       # why: G2+G3 regulator named in the file, near-homophone of "era"
+    value: era
+  - key: carpet area                 # why: G2 fixed phrase from the persona description, confused with super built-up area
+    value: ""
+  - key: super built-up area         # why: G2 fixed phrase, paired contrast named alongside carpet area
+    value: ""
+  - key: occupancy certificate       # why: G2 fixed phrase, routinely confused with "completion certificate" in this industry
+    value: ""
+  - key: builder-buyer agreement     # why: G2 named legal document type in the journey prompt
+    value: ""
+
+pronunciation:
+  - key: RERA                       # why: default TTS may spell it as letters; it is said as a word
+    value: ray-ra
+
+# Persona is Priya, female, warm real estate advisor (from the file). Fillers
+# match that register; Hindi verbs use `karti`/`dekhti` (female) forms.
+# No caller language beyond the `en`+`hi` floor is named in the file, so no
+# extra row was added (contrast with the mutual-funds run, which named Marathi).
+fillers:
+  - key: en
+    value: |
+      Mm-hmm
+      Right
+      Of course
+      Sure, happy to help with that
+      Absolutely, let me find that for you
+      Of course, let me confirm that
+      Let me look into that for you…
+      One moment…
+      Just checking that for you…
+  - key: hi
+    value: |
+      Ji
+      Achha
+      Bilkul
+      Ji, zaroor madad karti hoon
+      Bilkul, dekhti hoon abhi
+      Haan ji, batati hoon
+      Ek second dekhti hoon…
+      Zara check karti hoon…
+      Ek minute…

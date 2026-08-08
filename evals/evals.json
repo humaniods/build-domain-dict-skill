@@ -1,0 +1,26 @@
+{
+  "skill_name": "build-domain-dict",
+  "evals": [
+    {
+      "id": 0,
+      "name": "domain-name-only-thin-input",
+      "prompt": "build-domain-dict for real estate",
+      "expected_output": "A short vocabulary set (not padded to look complete), grounded only in terms a real-estate caller in India demonstrably says. Should include the RERA regulator. Should NOT invent brand names, project names, or anything not evidenced by the bare domain name.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "prose-brief-jargon-heavy-multilang",
+      "prompt": "Build a domain dictionary for a mutual fund servicing agent. It's an outbound agent for SIP top-ups, redemption requests, folio queries, and NAV-based valuation updates. Callers are Marathi and English speaking.",
+      "expected_output": "Vocabulary admits SIP and NAV (both gate-pass), but should reject 'redemption', 'folio', 'top-up', 'valuation' as common words with zero recognition benefit, even though they are domain-relevant. Fillers must include en and hi (the required floor, present in every dictionary) PLUS mr (Marathi), which the brief names explicitly. This tests the floor-not-ceiling rule directly: the extra language is added on top of the floor, not swapped in for it. Filler phrases must be written in this domain's register, not copied from the worked rows in references/fillers.md.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "existing-yaml-file-evidence",
+      "prompt": "Here's our real estate agent's playbook config. Build a domain dictionary for it.",
+      "expected_output": "Only terms that literally appear in the supplied file's persona/prompt text should be admitted (RERA, carpet area, super built-up area, occupancy certificate, builder-buyer agreement are candidates; ready-to-move/under-construction/possession date/site visit should mostly fail as common words). Nothing outside the file should be invented, even though it's a real-estate domain the model 'knows' things about generically.",
+      "files": ["sample-real-estate-playbook.yaml"]
+    }
+  ]
+}

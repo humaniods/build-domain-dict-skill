@@ -1,0 +1,11 @@
+{
+  "name": "build-domain-dict-skill",
+  "description": "Author supervoice Domain Dictionaries (STT vocabulary, TTS pronunciation, latency fillers) for a domain such as banking, hospital, or real estate, starting from a domain name, a prose brief, or an existing playbook/dictionary YAML. Includes the admission-test rules that keep the STT keyterm budget from being wasted on speculative terms.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Sanyam Sharma"
+  },
+  "skills": [
+    "./build-domain-dict"
+  ]
+}

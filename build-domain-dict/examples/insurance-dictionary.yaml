@@ -1,0 +1,89 @@
+# Domain dictionary: insurance (health + motor policy servicing agent).
+#
+# Input was a prose brief: "outbound renewal agent for a health and motor insurer,
+# handles renewals, claim status, and policy endorsements; Hindi + English callers."
+#
+# `insurance` normalizes to the `banking` seed, so banking's rows (EMI, IFSC, KYC,
+# NEFT, UPI, CIBIL, amortization, collateral, moratorium…) are already merged in and
+# are deliberately NOT restated here.
+#
+# Deliberately excluded, domain-related but failing the admission test:
+#   premium, policy, claim, renewal, nominee, hospital, agent  → common words the STT
+#     already transcribes correctly; they would spend the keyterm cap for nothing.
+#   grace period, waiting period  → ordinary word pairs, recognized as-is.
+#   RERA, stamp duty              → different domain; the brief never mentions property.
+#
+# Keyterm cost: 12 rows, 7 of them with a value -> 19 tokens of the 40-token target.
+
+domain: insurance
+
+vocabulary:
+  - key: IRDAI                    # why: G1+G3 regulator, spelled letter-by-letter; named in brief
+    value: I R D A I
+  - key: ULIP                     # why: G1 product acronym, said as letters
+    value: U L I P
+  - key: TPA                      # why: G1 third-party administrator, always said as letters on claim calls
+    value: T P A
+  - key: NCB                      # why: G1 motor renewal term; callers also say it in full
+    value: no claim bonus
+  - key: PED                      # why: G1 pre-existing disease, said as letters in health claims
+    value: pre-existing disease
+  - key: rider                    # why: G2 homophone, STT returns "writer"
+    value: writer
+  - key: endorsement              # why: G2 named in brief as a supported action; rare in general speech
+    value: ""
+  - key: subrogation              # why: G2 claims jargon, mangled by general STT
+    value: ""
+  - key: indemnity                # why: G2 policy-wording jargon
+    value: ""
+  - key: sum assured              # why: G2 fixed phrase; "some assured" without it
+    value: some assured
+  - key: surrender value          # why: G2 fixed phrase, split into common words otherwise
+    value: ""
+  - key: cashless                 # why: G2 claim-mode term used as a bare adjective
+    value: ""
+
+pronunciation:
+  - key: IRDAI                    # why: TTS reads it as one word ("ird-eye")
+    value: eye-ar-dee-ay-eye
+  - key: ULIP                     # why: TTS says "yoolip"
+    value: you-el-eye-pee
+  - key: TPA                      # why: TTS says "tpah"
+    value: tee-pee-ay
+  - key: NCB                      # why: acronym, must be spelled
+    value: en-see-bee
+  - key: PED                      # why: TTS says "ped"
+    value: pee-ee-dee
+  - key: subrogation              # why: stress lands on the wrong syllable by default
+    value: sub-ro-GAY-shun
+
+# Fillers carry the domain's register (formal, unhurried: a renewal call is about
+# money and paperwork) but none of its vocabulary, they play before the reply exists.
+# Written for this domain, NOT copied from the worked rows in references/fillers.md.
+# Persona is female, so Hindi verbs are `karti`.
+fillers:
+  - key: en
+    value: |
+      Understood
+      Certainly
+      Noted
+      Yes, I can help you with that
+      Thank you, I have that here
+      Of course, let me confirm this for you
+      Let me verify that…
+      One moment please…
+      Bear with me a moment…
+  - key: hi
+    value: |
+      Jee
+      Theek hai
+      Samajh gayi
+      Jee, main dekhti hoon aapke liye
+      Bilkul, abhi confirm karti hoon
+      Haan jee, main pata karti hoon
+      Ek pal…
+      Zara verify karti hoon…
+      Thoda sa rukiye…
+
+# No `settings:` block; an absent key keeps whatever knobs are already stored.
+# Sending `{}` would reset enabled / selection / deferred_ms / kinds to defaults.

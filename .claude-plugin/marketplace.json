@@ -1,0 +1,13 @@
+{
+  "name": "build-domain-dict-marketplace",
+  "owner": {
+    "name": "Sanyam Sharma"
+  },
+  "plugins": [
+    {
+      "name": "build-domain-dict-skill",
+      "source": "./",
+      "description": "Author supervoice Domain Dictionaries (STT vocabulary, TTS pronunciation, latency fillers) for a domain such as banking, hospital, or real estate."
+    }
+  ]
+}
